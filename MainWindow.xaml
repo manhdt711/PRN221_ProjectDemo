@@ -23,7 +23,6 @@ Title="Màn hình chính" Height="450" Width="600">
         <!-- Main Content -->
         <StackPanel Grid.Row="1" Margin="20">
             <!-- Thêm các nút chức năng -->
-            <Button Content="Tính lương" Click="CalculateSalaryButton_Click" Margin="0,0,0,10"/>
             <Button Content="Quản lý nhân viên" Click="ManageEmployeesButton_Click" Margin="0,0,0,10"/>
             <Button Content="Quản lý kỹ năng và phụ cấp" Click="ManageSkillsAndAllowancesButton_Click" Margin="0,0,0,10"/>
             <!-- Bổ sung nút Thống kê lương -->

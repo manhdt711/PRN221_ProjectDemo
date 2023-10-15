@@ -1,0 +1,62 @@
+﻿<Window x:Class="PRN221_ProjectDemo.CreateEmp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="451" Width="400">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="First Name:" Width="100" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="FirstNameTextBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Last Name:" Width="100" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="LastNameTextBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Department:" Width="100" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="DepartmentComboBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Department Duty:" Width="100" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="DepartmentDutyTextBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Date of Birth:" Width="100" VerticalContentAlignment="Center"/>
+                <DatePicker x:Name="DateOfBirthDatePicker" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Job:" Width="100" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="JobTextBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Gender:" Width="100" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="GenderComboBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Phone Number:" Width="100" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="PhoneNumberTextBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Salary Per Hour:" Width="100" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="SalaryPerHourTextBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Permission:" Width="100" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="PermissionTextBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Payment Coefficient:" Width="100" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="PaymentCoefficientTextBox" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Start Date:" Width="100" VerticalContentAlignment="Center"/>
+                <DatePicker x:Name="BeginDateDatePicker" Margin="5" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="End Date:" Width="100" VerticalContentAlignment="Center"/>
+                <DatePicker x:Name="EndDateDatePicker" Margin="5" Width="200"/>
+            </StackPanel>
+            <Button x:Name="Action" Content="Create" Width="100" Height="30" HorizontalAlignment="Center" Click="CreateButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
