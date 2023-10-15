@@ -3,6 +3,7 @@ using PRN221_ProjectDemo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -59,7 +60,17 @@ LEFT JOIN Payments AS p ON e.EmployeeID = p.EmployeeID
             var existing = dbContext.Employees.FirstOrDefault(e => e.EmployeeId == emp.EmployeeId);
             if(existing != null)
             {
-                existing = emp;
+                existing.EmployeeId = emp.EmployeeId;
+                existing.DepartmentId = emp.DepartmentId;
+                existing.FirstName = emp.FirstName;
+                existing.LastName = emp.LastName;
+                existing.DateOfBirth = emp.DateOfBirth;
+                existing.Title = emp.Title;
+                existing.Gender = emp.Gender;
+                existing.PhoneNumber = emp.PhoneNumber;
+                existing.JobLevelId = emp.JobLevelId;
+                existing.BeginDate = emp.BeginDate;
+                existing.EndDate = emp.EndDate;
                 dbContext.SaveChanges();
             }    
         }

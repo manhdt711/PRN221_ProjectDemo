@@ -9,7 +9,8 @@
     <Grid>
         <Grid Background="Aqua" Margin="0,0,0,387">
             <Label Content="Department: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="88,10,0,0" VerticalAlignment="Top" Width="120" />
+            <ComboBox x:Name="coDepartment" HorizontalAlignment="Left" Margin="88,10,0,0" VerticalAlignment="Top" Width="120" 
+          DisplayMemberPath="DepartmentName" SelectedValuePath="DepartmentName" ItemsSource="{Binding}"/>
             <Label Content="SortBy: " HorizontalAlignment="Left" Margin="239,10,0,0" VerticalAlignment="Top"/>
             <ComboBox HorizontalAlignment="Left" Margin="294,10,0,0" VerticalAlignment="Top" Width="120"/>
         </Grid>
@@ -32,6 +33,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="1410,482,0,0" VerticalAlignment="Top" Height="22" Width="65"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="1410,482,0,0" VerticalAlignment="Top" Height="22" Width="65" Click="Button_Click"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="1320,482,0,0" VerticalAlignment="Top" Height="22" Width="65" Click="Button_Click_1"/>
     </Grid>
 </Window>

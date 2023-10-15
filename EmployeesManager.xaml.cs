@@ -23,19 +23,26 @@ namespace PRN221_ProjectDemo
     public partial class EmployeesManager : Window
     {
         private EmpDAO empDAO;
-
+        private DepartmentDAO departmentDAO;
+        private List<Department> lstDepartment;
         public EmployeesManager()
         {
+            departmentDAO = new DepartmentDAO();
             InitializeComponent();
-            empDAO = new EmpDAO(); // Khởi tạo đối tượng EmpDAO
+            empDAO = new EmpDAO();
+
             var employeeInfoList = empDAO.GetEmployeeInfoList();
+            var departmentsList = departmentDAO.GetAll();
+
+            // Set the DataContext of the ComboBox to the list of departments
+            coDepartment.ItemsSource = departmentsList;
+
+            // Set the DisplayMemberPath and SelectedValuePath properties
+            coDepartment.DisplayMemberPath = "DepartmentName";
+            coDepartment.SelectedValuePath = "DepartmentName";
 
             // Gán danh sách EmployeeInfo cho ListView
             lstEmp.ItemsSource = employeeInfoList;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
         }
         private void lstEmp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -56,6 +63,18 @@ namespace PRN221_ProjectDemo
                     MessageBox.Show("Lỗi khi mở chi tiết đơn hàng: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            CreateEmp createEmpPopup = new CreateEmp(null);
+            createEmpPopup.Show();
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using PRN221_ProjectDemo.Models;
+﻿using PRN221_ProjectDemo.DAO;
+using PRN221_ProjectDemo.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,16 +25,29 @@ namespace PRN221_ProjectDemo
     {
         private Prn221ProjectContext _context;
         private bool IsCreate = false;
+        private DepartmentDAO departmentDAO;
+        private List<Department> lstDepartment;
+        private List<string> lstGender = new List<string> { "Male", "Female" };
         public CreateEmp(EmployeeInfo? employeeInfo)
         {
+            departmentDAO = new DepartmentDAO();
             InitializeComponent();
+            var departmentsList = departmentDAO.GetAll();
 
+            // Set the DataContext of the ComboBox to the list of departments
+            DepartmentComboBox.ItemsSource = departmentsList;
+
+            // Set the DisplayMemberPath and SelectedValuePath properties
+            DepartmentComboBox.DisplayMemberPath = "DepartmentName";
+            DepartmentComboBox.SelectedValuePath = "DepartmentName";
+
+            GenderComboBox.ItemsSource = lstGender;
             if (employeeInfo != null)
             {
                 bool IsCreate = false;
                 FirstNameTextBox.Text = employeeInfo.FirstName;
                 LastNameTextBox.Text = employeeInfo.LastName;
-                DepartmentComboBox.Text = employeeInfo.DepartmentName;
+                DepartmentComboBox.SelectedValue = employeeInfo.DepartmentName;
                 DepartmentDutyTextBox.Text = employeeInfo.DepartmentDuty;
                 DateOfBirthDatePicker.SelectedDate = employeeInfo.DateOfBirth;
                 JobTextBox.Text = employeeInfo.Job;
