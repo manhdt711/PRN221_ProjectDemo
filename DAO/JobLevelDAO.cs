@@ -7,23 +7,22 @@ using System.Threading.Tasks;
 
 namespace PRN221_ProjectDemo.DAO
 {
-    internal class DepartmentDAO
+    internal class JobLevelDAO
     {
         private readonly Prn221ProjectContext dbContext;
-        public DepartmentDAO()
+
+        public JobLevelDAO()
         {
             dbContext = new Prn221ProjectContext();
         }
 
-        public List<Department> GetAll()
+        public JobLevel FindJobLevelBySalary(decimal Salary)
         {
-            var department = dbContext.Departments.ToList();
-            return department;
+            return dbContext.JobLevels.Find(Salary);
         }
-        public Department FindDepartmentByName(string name)
+        public List<JobLevel> GetAllJobLevel()
         {
-            var department = dbContext.Departments.Find(name);
-            return department;
+            return dbContext.JobLevels.ToList();
         }
     }
 }

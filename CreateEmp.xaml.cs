@@ -27,9 +27,12 @@ namespace PRN221_ProjectDemo
         private bool IsCreate = false;
         private DepartmentDAO departmentDAO;
         private List<Department> lstDepartment;
+        private List<JobLevel> lstJobLevel;
+        private JobLevelDAO jobLevelDAO;
         private List<string> lstGender = new List<string> { "Male", "Female" };
         public CreateEmp(EmployeeInfo? employeeInfo)
         {
+            jobLevelDAO = new JobLevelDAO();
             departmentDAO = new DepartmentDAO();
             InitializeComponent();
             var departmentsList = departmentDAO.GetAll();
@@ -40,6 +43,10 @@ namespace PRN221_ProjectDemo
             // Set the DisplayMemberPath and SelectedValuePath properties
             DepartmentComboBox.DisplayMemberPath = "DepartmentName";
             DepartmentComboBox.SelectedValuePath = "DepartmentName";
+
+            SalaryPerHourTextBox.ItemsSource = jobLevelDAO.GetAllJobLevel();
+            SalaryPerHourTextBox.DisplayMemberPath = "SalaryPerHour";
+            SalaryPerHourTextBox.SelectedValuePath = "SalaryPerHour";
 
             GenderComboBox.ItemsSource = lstGender;
             if (employeeInfo != null)
@@ -87,15 +94,16 @@ namespace PRN221_ProjectDemo
             {
                 try
                 {
+                    departmentDAO = new DepartmentDAO();
                     Employee newEmp = new Employee
                     {
                         EmployeeId = InsertEmpId(),
-                        DepartmentId = "",
+                        DepartmentId = departmentDAO.FindDepartmentByName((string)DepartmentComboBox.SelectedValue).DepartmentId,
                         FirstName = FirstNameTextBox.Text,
                         LastName = LastNameTextBox.Text,
                         DateOfBirth = DateOfBirthDatePicker.SelectedDate,
-                        Title = "",
-                        Gender = "",
+                        Title = JobTextBox.Text,
+                        Gender = (string)GenderComboBox.SelectedValue,
                         PhoneNumber = PhoneNumberTextBox.Text,
                         JobLevelId = 2,
                         BeginDate = BeginDateDatePicker.SelectedDate,

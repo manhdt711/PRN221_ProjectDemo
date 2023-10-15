@@ -38,7 +38,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Salary Per Hour:" Width="100" VerticalContentAlignment="Center"/>
-                <TextBox x:Name="SalaryPerHourTextBox" Margin="5" Width="200"/>
+                <ComboBox x:Name="SalaryPerHourTextBox" Margin="5" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Permission:" Width="100" VerticalContentAlignment="Center"/>
