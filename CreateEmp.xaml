@@ -16,10 +16,7 @@
                 <Label Content="Department:" Width="100" VerticalContentAlignment="Center"/>
                 <ComboBox x:Name="DepartmentComboBox" Margin="5" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Department Duty:" Width="100" VerticalContentAlignment="Center"/>
-                <TextBox x:Name="DepartmentDutyTextBox" Margin="5" Width="200"/>
-            </StackPanel>
+            <StackPanel Orientation="Horizontal"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Date of Birth:" Width="100" VerticalContentAlignment="Center"/>
                 <DatePicker x:Name="DateOfBirthDatePicker" Margin="5" Width="200"/>

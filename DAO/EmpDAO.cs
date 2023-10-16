@@ -62,11 +62,11 @@ LEFT JOIN Payments AS p ON e.EmployeeID = p.EmployeeID
             {
                 // Xử lý lỗi DbUpdateException ở đây
                 // In thông tin lỗi hoặc ghi vào tệp log
-                Console.WriteLine($"DbUpdateException: {ex.Message}");
+                Debug.WriteLine($"DbUpdateException: {ex.Message}");
                 // Để xem thông tin lỗi cụ thể hơn, bạn có thể truy cập Inner Exception.
                 if (ex.InnerException != null)
                 {
-                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                    Debug.WriteLine($"Inner Exception: {ex.InnerException.Message}");
                 }
             }
 
@@ -94,11 +94,11 @@ LEFT JOIN Payments AS p ON e.EmployeeID = p.EmployeeID
             }
             catch (DbUpdateException ex)
             {
-                Console.WriteLine($"DbUpdateException: {ex.Message}");
+                Debug.WriteLine($"DbUpdateException: {ex.Message}");
                 // Để xem thông tin lỗi cụ thể hơn, bạn có thể truy cập Inner Exception.
                 if (ex.InnerException != null)
                 {
-                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                    Debug.WriteLine($"Inner Exception: {ex.InnerException.Message}");
                 }
             }
 

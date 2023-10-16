@@ -58,7 +58,6 @@ namespace PRN221_ProjectDemo
             FirstNameTextBox.Text = employeeInfo.FirstName;
             LastNameTextBox.Text = employeeInfo.LastName;
             DepartmentComboBox.SelectedValue = employeeInfo.DepartmentName;
-            DepartmentDutyTextBox.Text = employeeInfo.DepartmentDuty;
             DateOfBirthDatePicker.SelectedDate = employeeInfo.DateOfBirth;
             JobTextBox.Text = employeeInfo.Job;
             GenderComboBox.Text = employeeInfo.Gender;
