@@ -2,6 +2,7 @@
 using PRN221_ProjectDemo.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -52,27 +53,60 @@ LEFT JOIN Payments AS p ON e.EmployeeID = p.EmployeeID
         }
         public void AddEmp(Employee emp)
         {
-            dbContext.Add(emp);
-            dbContext.SaveChanges();
+            try
+            {
+                dbContext.Add(emp);
+                dbContext.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Xử lý lỗi DbUpdateException ở đây
+                // In thông tin lỗi hoặc ghi vào tệp log
+                Console.WriteLine($"DbUpdateException: {ex.Message}");
+                // Để xem thông tin lỗi cụ thể hơn, bạn có thể truy cập Inner Exception.
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
+            }
+
         }
         public void UpdateEmp(Employee emp)
         {
-            var existing = dbContext.Employees.FirstOrDefault(e => e.EmployeeId == emp.EmployeeId);
-            if(existing != null)
+            try
             {
-                existing.EmployeeId = emp.EmployeeId;
-                existing.DepartmentId = emp.DepartmentId;
-                existing.FirstName = emp.FirstName;
-                existing.LastName = emp.LastName;
-                existing.DateOfBirth = emp.DateOfBirth;
-                existing.Title = emp.Title;
-                existing.Gender = emp.Gender;
-                existing.PhoneNumber = emp.PhoneNumber;
-                existing.JobLevelId = emp.JobLevelId;
-                existing.BeginDate = emp.BeginDate;
-                existing.EndDate = emp.EndDate;
-                dbContext.SaveChanges();
-            }    
+                var existing = dbContext.Employees.FirstOrDefault(e => e.EmployeeId == emp.EmployeeId);
+                if (existing != null)
+                {
+                    existing.EmployeeId = emp.EmployeeId;
+                    existing.DepartmentId = emp.DepartmentId;
+                    existing.FirstName = emp.FirstName;
+                    existing.LastName = emp.LastName;
+                    existing.DateOfBirth = emp.DateOfBirth;
+                    existing.Title = emp.Title;
+                    existing.Gender = emp.Gender;
+                    existing.PhoneNumber = emp.PhoneNumber;
+                    existing.JobLevelId = emp.JobLevelId;
+                    existing.BeginDate = emp.BeginDate;
+                    existing.EndDate = emp.EndDate;
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine($"DbUpdateException: {ex.Message}");
+                // Để xem thông tin lỗi cụ thể hơn, bạn có thể truy cập Inner Exception.
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
+            }
+
+                
+        }
+        public Employee GetEmpById(string EmpId)
+        {
+            return dbContext.Employees.FirstOrDefault(e => e.EmployeeId == EmpId);
         }
 
     }

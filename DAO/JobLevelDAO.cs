@@ -18,7 +18,7 @@ namespace PRN221_ProjectDemo.DAO
 
         public JobLevel FindJobLevelBySalary(decimal Salary)
         {
-            return dbContext.JobLevels.Find(Salary);
+            return dbContext.JobLevels.FirstOrDefault(d => d.SalaryPerHour == Salary);
         }
         public List<JobLevel> GetAllJobLevel()
         {

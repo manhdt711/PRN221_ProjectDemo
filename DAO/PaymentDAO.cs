@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace PRN221_ProjectDemo.DAO
 {
-    internal class UserDAO
+    internal class PaymentDAO
     {
         private readonly Prn221ProjectContext dbContext;
-        public UserDAO()
+        public PaymentDAO()
         {
             dbContext = new Prn221ProjectContext();
         }
-        public void CreateUser(User user)
+        public void CreateNewPayment(Payment payment)
         {
             try
             {
-                dbContext.Users.Add(user);
+                dbContext.Payments.Add(payment);
                 dbContext.SaveChanges();
             }
             catch (DbUpdateException ex)
@@ -35,14 +35,14 @@ namespace PRN221_ProjectDemo.DAO
             }
 
             
-        }    
+        }
 
-        public void UpdateUserByAdmin(User user)
+        public void updatePaymentByAdmin(Payment payment)
         {
-            var existingUser = dbContext.Users.FirstOrDefault(u => u.EmployeeId == user.EmployeeId);
-            if(existingUser != null)
+            var exitxstingPayment = dbContext.Payments.FirstOrDefault(p => p.EmployeeId == payment.EmployeeId);
+            if(exitxstingPayment != null)
             {
-                existingUser.Permission = user.Permission;
+                exitxstingPayment.Coefficient = payment.Coefficient;
                 dbContext.SaveChanges();
             }    
         }
