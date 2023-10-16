@@ -1,6 +1,8 @@
-﻿using PRN221_ProjectDemo.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PRN221_ProjectDemo.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +19,53 @@ namespace PRN221_ProjectDemo.DAO
 
         public List<Department> GetAll()
         {
-            var department = dbContext.Departments.ToList();
-            return department;
+            var departments = dbContext.Departments.ToList();
+            return departments;
         }
+
         public Department FindDepartmentByName(string name)
         {
-            var department = dbContext.Departments.Find(name);
+            var department = dbContext.Departments.FirstOrDefault(d => d.DepartmentName == name);
             return department;
+        }
+
+        public void Add(Department department)
+        {
+            try
+            {
+                dbContext.Departments.Add(department);
+                dbContext.SaveChanges();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                Debug.WriteLine(dbEx.Message);
+            }
+        }
+
+        public void Update(Department department)
+        {
+            try
+            {
+                dbContext.Entry(department).State = EntityState.Modified;
+                dbContext.SaveChanges();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                Debug.WriteLine(dbEx.Message);
+            }
+        }
+
+        public void Delete(Department department)
+        {
+            try
+            {
+                dbContext.Departments.Remove(department);
+                dbContext.SaveChanges();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                Debug.WriteLine(dbEx.Message);
+            }
         }
     }
 }

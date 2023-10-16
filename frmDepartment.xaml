@@ -1,0 +1,35 @@
+﻿<Window x:Class="PRN221_ProjectDemo.frmDepartment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRN221_ProjectDemo"
+        mc:Ignorable="d"
+        Title="frmDepartment" Height="450" Width="800">
+    <Grid>
+        <ListView Name="departmentListView" SelectionChanged="ListView_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding DepartmentID}" />
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding DepartmentName}" />
+                    <GridViewColumn Header="Duty" Width="100" DisplayMemberBinding="{Binding DepartmentDuty}" />
+                    <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Status}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Content="Department ID:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,20,0,0"/>
+        <Label Content="Department Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,60,0,0"/>
+        <Label Content="Department Duty:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,100,0,0"/>
+        <Label Content="Status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,140,0,0"/>
+
+        <TextBox Name="textBoxDepartmentID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="540,20,0,0" />
+        <TextBox Name="textBoxDepartmentName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="540,60,0,0" />
+        <TextBox Name="textBoxDepartmentDuty" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="540,100,0,0" />
+        <TextBox Name="textBoxStatus" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="540,140,0,0" />
+
+        <Button Content="Add" Click="AddButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="420,180,0,0" />
+        <Button Content="Update" Click="UpdateButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="500,180,0,0" />
+        <Button Content="Delete" Click="DeleteButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="580,180,0,0" />
+    </Grid>
+</Window>
