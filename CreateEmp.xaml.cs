@@ -72,11 +72,28 @@ namespace PRN221_ProjectDemo
 
         private string GenerateNewEmployeeId()
         {
-            _context = new Prn221ProjectContext();
-            int countEmp = _context.Employees.Count();
-            string newId = "EMP" + (countEmp + 1).ToString("D3");
-            return newId;
+            using (var _context = new Prn221ProjectContext())
+            {
+                // Sử dụng LINQ để truy vấn số emp lớn nhất
+                var maxEmpId = _context.Employees
+                    .Select(e => e.EmployeeId)
+                    .Max();
+
+                if (!string.IsNullOrEmpty(maxEmpId))
+                {
+                    // Nếu có số emp trong cơ sở dữ liệu, bạn có thể tạo một số emp mới dựa trên số emp lớn nhất đã có.
+                    int maxEmpNumber = int.Parse(maxEmpId.Substring(3));
+                    string newId = "EMP" + (maxEmpNumber + 1).ToString("D3");
+                    return newId;
+                }
+                else
+                {
+                    // Nếu không có số emp trong cơ sở dữ liệu, bạn có thể tạo số emp đầu tiên.
+                    return "EMP001";
+                }
+            }
         }
+
 
         private void CreateEmployee()
         {
