@@ -1,32 +1,32 @@
 ﻿using PRN221_ProjectDemo.DAO;
 using PRN221_ProjectDemo.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace PRN221_ProjectDemo
 {
     public partial class frmLogwork : Window
     {
-        private ObservableCollection<WorkHour> workHours = new ObservableCollection<WorkHour>();
-        private WorkHourDAO workHourDAO;
-
-        public frmLogwork()
+        private WorkHourDAO workHourDAO = new WorkHourDAO();
+        private User SavedUser = null;
+        public frmLogwork(User user)
         {
             InitializeComponent();
             workHourDAO = new WorkHourDAO();
+            var workHours = workHourDAO.GetAllByEmpId(user.EmployeeId);
             workHourListView.ItemsSource = workHours;
-            RefreshWorkHourList();
+            SavedUser = user;
+            textBoxEmployeeID.Text = user.EmployeeId;
         }
 
         private void RefreshWorkHourList()
         {
-            workHours.Clear();
-            var workHourList = workHourDAO.GetAll();
-            foreach (var workHour in workHourList)
-            {
-                workHours.Add(workHour);
-            }
+            workHourDAO = new WorkHourDAO();
+            var workHours = workHourDAO.GetAllByEmpId(SavedUser.EmployeeId);
+            workHourListView.ItemsSource = workHours;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -49,7 +49,6 @@ namespace PRN221_ProjectDemo
             workHourDAO.Add(newWorkHour);
             RefreshWorkHourList();
 
-            textBoxEmployeeID.Clear();
             datePickerWorkDay.SelectedDate = null;
             timePickerStart.SelectedDate = null;
             timePickerEnd.SelectedDate = null;
@@ -82,7 +81,6 @@ namespace PRN221_ProjectDemo
                 workHourDAO.Delete(selectedWorkHour);
                 RefreshWorkHourList();
 
-                textBoxEmployeeID.Clear();
                 datePickerWorkDay.SelectedDate = null;
                 timePickerStart.SelectedDate = null;
                 timePickerEnd.SelectedDate = null;

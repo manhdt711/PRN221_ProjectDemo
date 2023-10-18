@@ -22,6 +22,12 @@ namespace PRN221_ProjectDemo.DAO
             return workHours;
         }
 
+        public List<WorkHour> GetAllByEmpId(string EmpId)
+        {
+            var workHours = dbContext.WorkHours.Where(w => w.EmployeeId == EmpId).ToList();
+            return workHours;
+        }
+
         public void Add(WorkHour workHour)
         {
             try

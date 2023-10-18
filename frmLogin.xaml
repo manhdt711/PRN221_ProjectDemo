@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PRN221_ProjectDemo"
         mc:Ignorable="d"
-        Title="frmLogin" Height="450" Width="800">
+         Title="Login" Height="390" Width="260">
     <Grid>
-        
+        <Label Content="Account" HorizontalAlignment="Left" Margin="36,85,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtAcc" HorizontalAlignment="Left" Margin="95,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtPass" HorizontalAlignment="Left" Margin="95,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <Button Content="Login" HorizontalAlignment="Left" Margin="56,239,0,0" VerticalAlignment="Top" Click="Login_Button_Click"/>
+        <Label x:Name="txtNofy"  HorizontalAlignment="Center" Margin="0,299,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.211,0.04"/>
+        <Button Content="ChangePassword" HorizontalAlignment="Left" Margin="130,239,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Label Content="" HorizontalAlignment="Center" Margin="0,291,0,0" VerticalAlignment="Top" x:Name="notiText"/>
+
     </Grid>
 </Window>

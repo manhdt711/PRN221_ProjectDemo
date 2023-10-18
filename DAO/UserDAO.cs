@@ -36,7 +36,11 @@ namespace PRN221_ProjectDemo.DAO
             }
 
             
-        }    
+        }
+        public User GetUserById(string UserId)
+        {
+            return dbContext.Users.FirstOrDefault(e => e.EmployeeId == UserId);
+        }
 
         public void UpdateUserByAdmin(User user)
         {

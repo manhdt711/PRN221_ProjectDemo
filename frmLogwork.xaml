@@ -10,7 +10,6 @@
         <ListView Name="workHourListView" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Employee ID" Width="100" DisplayMemberBinding="{Binding EmployeeID}" />
                     <GridViewColumn Header="Work Day" Width="100" DisplayMemberBinding="{Binding WorkDay}" />
                     <GridViewColumn Header="Time Start" Width="100" DisplayMemberBinding="{Binding TimeStart}" />
                     <GridViewColumn Header="Time End" Width="100" DisplayMemberBinding="{Binding TimeEnd}" />
@@ -25,7 +24,7 @@
         <Label Content="Time End:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,140,0,0" />
         <Label Content="Coefficient:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,180,0,0" />
 
-        <TextBox Name="textBoxEmployeeID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="540,20,0,0" />
+        <TextBox Name="textBoxEmployeeID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" IsReadOnly="True" Margin="540,20,0,0" />
         <DatePicker Name="datePickerWorkDay" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="540,60,0,0" />
         <DatePicker Name="timePickerStart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="540,100,0,0" />
         <DatePicker Name="timePickerEnd" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="540,140,0,0" />
