@@ -16,6 +16,7 @@ namespace PRN221_ProjectDemo.Models;
             : base(options)
         {
         }
+    public virtual DbSet<StPayment> StPayments { get; set; }
     public virtual DbSet<EmployeeInfo> EmployeeInfos { get; set; }
     public virtual DbSet<Allowance> Allowances { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
@@ -188,7 +189,9 @@ namespace PRN221_ProjectDemo.Models;
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__WorkHour__Employ__5070F446");
             });
-        modelBuilder.Entity<StEmployeeInfo.EmployeeInfo>().HasKey(e => e.EmployeeId); // Thay EmployeeId bằng tên trường khóa chính thực tế
+        modelBuilder.Entity<StEmployeeInfo.EmployeeInfo>().HasKey(e => e.EmployeeId);
+        modelBuilder.Entity<StPayment>().HasKey(e => e.EMPID);
+        modelBuilder.Entity<Payment>().HasKey(e => e.EmployeeId);
         OnModelCreatingPartial(modelBuilder);
         }
 

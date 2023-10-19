@@ -46,7 +46,9 @@ namespace PRN221_ProjectDemo
 
         private void CalculateSalaryButton_Click(object sender, RoutedEventArgs e)
         {
-
+            frmCaculateSalary frmCaculateSalary = new frmCaculateSalary();
+            frmCaculateSalary.Show();
+            this.Close();
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)

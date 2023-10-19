@@ -62,5 +62,42 @@ namespace PRN221_ProjectDemo.DAO
                 }
             }   
         }
+        public void Update(Payment payment)
+        {
+            try
+            {
+                // Tìm bản ghi trong cơ sở dữ liệu dựa trên EmployeeID
+                var existingPayment = dbContext.Payments.FirstOrDefault(p => p.EmployeeId == payment.EmployeeId);
+
+                if (existingPayment != null)
+                {
+                    // Cập nhật giá trị cho các cột
+                    existingPayment.SalaryPeriod = payment.SalaryPeriod;
+                    existingPayment.TotalHours = payment.TotalHours;
+                    existingPayment.Coefficient = payment.Coefficient;
+                    existingPayment.AmountTotal = (decimal)(payment.TotalHours * payment.Coefficient);
+                    existingPayment.OtherPayment = payment.OtherPayment;
+                    existingPayment.TotalPayments = existingPayment.AmountTotal + payment.OtherPayment;
+                    dbContext.Payments.Update(existingPayment);
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                // Xử lý ngoại lệ liên quan đến cơ sở dữ liệu (ví dụ: duplicate key)
+                // Có thể ghi log hoặc thực hiện các hành động khác tùy theo nhu cầu
+                Debug.WriteLine("Lỗi cơ sở dữ liệu: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các ngoại lệ khác (nếu có)
+                Debug.WriteLine("Lỗi: " + ex.Message);
+            }
+        }
+        public Payment GetPaymentByEmpId(string empID)
+        {
+            return dbContext.Payments.FirstOrDefault(p => p.EmployeeId == empID);
+        }
     }
 }

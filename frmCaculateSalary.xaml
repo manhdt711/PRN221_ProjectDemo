@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PRN221_ProjectDemo"
         mc:Ignorable="d"
-        Title="frmCaculateSalary" Height="450" Width="800">
+        Title="frmCaculateSalary" Height="450" Width="1135">
     <Grid>
-        
+        <ListView x:Name="lstSalary" Height="364" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="EMPID" DisplayMemberBinding="{Binding EMPID}" Width="100"/>
+                    <GridViewColumn Header="FirstName" DisplayMemberBinding="{Binding FirstName}" Width="100"/>
+                    <GridViewColumn Header="LastName" DisplayMemberBinding="{Binding LastName}" Width="100"/>
+                    <GridViewColumn Header="Total Hours" DisplayMemberBinding="{Binding TotalHours}" Width="100"/>
+                    <GridViewColumn Header="Level ID" DisplayMemberBinding="{Binding LevelId}" Width="100"/>
+                    <GridViewColumn Header="Salary Per Hour" DisplayMemberBinding="{Binding SalaryPerHour}" Width="100"/>
+                    <GridViewColumn Header="Department Name" DisplayMemberBinding="{Binding DepartmentName}" Width="100"/>
+                    <GridViewColumn Header="Phone Number" DisplayMemberBinding="{Binding PhoneNumber}" Width="100"/>
+                    <GridViewColumn Header="Allowance Name" DisplayMemberBinding="{Binding AllowanceName}" Width="100"/>
+                    <GridViewColumn Header="Allowance Amount" DisplayMemberBinding="{Binding AllowanceAmount}" Width="100"/>
+                    <GridViewColumn Header="Amount Total" DisplayMemberBinding="{Binding AmountTotal}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="320,404,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Window>

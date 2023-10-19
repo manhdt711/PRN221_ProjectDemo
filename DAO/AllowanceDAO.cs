@@ -31,6 +31,11 @@ namespace PRN221_ProjectDemo.DAO
             return dbContext.Allowances.ToList();
         }
 
+        public Allowance GetAllowancesById(int? id)
+        {
+            return dbContext.Allowances.FirstOrDefault(a => a.AllowanceId == id);
+        }
+
         public bool AddAllowance(Allowance allowance)
         {
             try

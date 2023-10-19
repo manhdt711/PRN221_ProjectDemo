@@ -23,6 +23,10 @@ namespace PRN221_ProjectDemo.DAO
             return dbContext.JobLevels.FirstOrDefault(d => d.SalaryPerHour == salary);
         }
 
+        public JobLevel FindSalaryByJoblevel(int? level)
+        {
+            return dbContext.JobLevels.FirstOrDefault(d => d.JobLevelId == level);
+        }
         public List<JobLevel> GetAllJobLevels()
         {
             return dbContext.JobLevels.ToList();
@@ -94,5 +98,6 @@ namespace PRN221_ProjectDemo.DAO
                 return false;
             }
         }
+
     }
 }

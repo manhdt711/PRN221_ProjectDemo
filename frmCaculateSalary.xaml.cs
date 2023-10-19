@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRN221_ProjectDemo.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,28 @@ namespace PRN221_ProjectDemo
         public frmCaculateSalary()
         {
             InitializeComponent();
+            StPaymentDAO stPaymentDAO = new StPaymentDAO();
+            var stPaymentList = stPaymentDAO.GetEmployeePayments();
+
+            stPaymentDAO.CaculatorTotalhourByEmpId(stPaymentList);
+            stPaymentDAO.CaculatorPayment(stPaymentList);
+
+            lstSalary.ItemsSource = stPaymentList;
+        }
+
+        void Caculator()
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StPaymentDAO stPaymentDAO = new StPaymentDAO();
+            var stPaymentList = stPaymentDAO.GetEmployeePayments();
+            stPaymentDAO.CaculatorTotalhourByEmpId(stPaymentList);
+            stPaymentDAO.CaculatorPayment(stPaymentList);
+
+            lstSalary.ItemsSource = stPaymentList;
         }
     }
 }

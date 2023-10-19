@@ -27,7 +27,7 @@ Title="Màn hình chính" Height="450" Width="600">
             <Button Content="Quản lý kỹ năng và phụ cấp" Click="ManageSkillsAndAllowancesButton_Click" Margin="0,0,0,10"/>
             <!-- Bổ sung nút Thống kê lương -->
             <Button Content="Quản lý cục" Click="SalaryReportButton_Click" Margin="0,0,0,10"/>
-            <Button Content="Thống kê lương" Click="SalaryReportButton_Click" Margin="0,0,0,10"/>
+            <Button Content="Thống kê lương" Click="CalculateSalaryButton_Click" Margin="0,0,0,10"/>
             <!-- Nút Đăng xuất -->
             <Button Content="Đăng xuất" Click="LogoutButton_Click" HorizontalAlignment="Center"/>
         </StackPanel>
