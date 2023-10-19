@@ -1,0 +1,38 @@
+﻿<Window x:Class="PRN221_ProjectDemo.frmSkill"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRN221_ProjectDemo"
+        mc:Ignorable="d"
+        Title="frmSkill" Height="370" Width="825">
+    <Grid Margin="405,240,0,0">
+        <ListView x:Name="lstViewAllowence" Margin="-10,-235,10,235">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="AllowanceID" Width="80" DisplayMemberBinding="{Binding AllowanceId}"></GridViewColumn>
+                    <GridViewColumn Header="AllowanceName" Width="200" DisplayMemberBinding="{Binding AllowanceName}"></GridViewColumn>
+                    <GridViewColumn Header="AllowanceAmount" Width="100" DisplayMemberBinding="{Binding AllowanceAmount}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Salary" HorizontalAlignment="Left" Margin="-363,-220,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.194"/>
+        <TextBox  x:Name="txtSalary" HorizontalAlignment="Left" Margin="-325,-216,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.208,-0.165"/>
+        <Label Content="Allowance" HorizontalAlignment="Left" Margin="-394,-183,0,0" VerticalAlignment="Top"/>
+        <TextBox  IsReadOnly="True" x:Name="txtAllowance" HorizontalAlignment="Left" Margin="-325,-179,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding Path=AllowanceId, Mode=OneWay}" DataContext="{Binding SelectedItem, ElementName=lstViewAllowence}"/>
+        <ListView x:Name="lstViewLevel" Margin="-394,-65,10,64">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="JobLevelID" Width="200" DisplayMemberBinding="{Binding JobLevelId}"></GridViewColumn>
+                    <GridViewColumn Header="SalaryPerHour" Width="350" DisplayMemberBinding="{Binding SalaryPerHour}"></GridViewColumn>
+                    <GridViewColumn Header="AllowanceID" Width="220" DisplayMemberBinding="{Binding AllowanceId}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="-325,-136,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="-285,-136,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="-245,-136,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+        <Button Content="EditAllowance" HorizontalAlignment="Left" Margin="-180,-136,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
+    </Grid>
+
+</Window>

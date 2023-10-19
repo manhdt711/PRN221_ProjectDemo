@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
 
 namespace PRN221_ProjectDemo
@@ -29,44 +30,49 @@ namespace PRN221_ProjectDemo
             workHourListView.ItemsSource = workHours;
         }
 
+        private bool CheckWeekend(DateTime date)
+        {
+            bool isWeekend = false;
+            if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
+            {
+                isWeekend = true;
+            }
+            return isWeekend;
+        }
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             string employeeID = textBoxEmployeeID.Text;
             DateTime workDay = datePickerWorkDay.SelectedDate ?? DateTime.Now;
-            DateTime timeStart = timePickerStart.SelectedDate ?? DateTime.Now;
-            DateTime timeEnd = timePickerEnd.SelectedDate ?? DateTime.Now;
-            double coefficient = double.Parse(textBoxCoefficient.Text);
-
+            int workHour = int.Parse(textBoxWorklog.Text);
+            int coefficientByDate = 1;
+            if(CheckWeekend(workDay))
+            {
+                coefficientByDate = 2;
+            }
             WorkHour newWorkHour = new WorkHour
             {
                 EmployeeId = employeeID,
                 WorkDay = workDay,
-                TimeStart = timeStart,
-                TimeEnd = timeEnd,
-                Coefficient = coefficient
+                WorkHour1 = workHour,
+                Coefficient = coefficientByDate
             };
 
             workHourDAO.Add(newWorkHour);
             RefreshWorkHourList();
 
             datePickerWorkDay.SelectedDate = null;
-            timePickerStart.SelectedDate = null;
-            timePickerEnd.SelectedDate = null;
-            textBoxCoefficient.Clear();
+            textBoxWorklog.Text = null;
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            WorkHour selectedWorkHour = (WorkHour)workHourListView.SelectedItem;
+            workHourDAO = new WorkHourDAO();
+            var selectedWorkHour = (WorkHour)workHourListView.SelectedItem;
 
             if (selectedWorkHour != null)
             {
-                selectedWorkHour.EmployeeId = textBoxEmployeeID.Text;
-                selectedWorkHour.WorkDay = datePickerWorkDay.SelectedDate ?? DateTime.Now;
-                selectedWorkHour.TimeStart = timePickerStart.SelectedDate ?? DateTime.Now;
-                selectedWorkHour.TimeEnd = timePickerEnd.SelectedDate ?? DateTime.Now;
-                selectedWorkHour.Coefficient = double.Parse(textBoxCoefficient.Text);
-
+                selectedWorkHour.WorkHour1 = int.Parse(textBoxWorklog.Text);
                 workHourDAO.Update(selectedWorkHour);
                 RefreshWorkHourList();
             }
@@ -82,10 +88,23 @@ namespace PRN221_ProjectDemo
                 RefreshWorkHourList();
 
                 datePickerWorkDay.SelectedDate = null;
-                timePickerStart.SelectedDate = null;
-                timePickerEnd.SelectedDate = null;
-                textBoxCoefficient.Clear();
+                textBoxWorklog.Text = null;
             }
         }
+        private void workHourListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Kiểm tra xem có mục nào được chọn không
+            if (workHourListView.SelectedItem != null)
+            {
+                // Lấy đối tượng WorkHour tương ứng với mục được chọn
+                WorkHour selectedWorkHour = (WorkHour)workHourListView.SelectedItem;
+
+                // Gán giá trị của các thuộc tính vào TextBox tương ứng
+                textBoxEmployeeID.Text = selectedWorkHour.EmployeeId;
+                datePickerWorkDay.SelectedDate = selectedWorkHour.WorkDay;
+                textBoxWorklog.Text = selectedWorkHour.WorkHour1.ToString();
+            }
+        }
+
     }
 }

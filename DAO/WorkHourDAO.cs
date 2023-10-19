@@ -27,7 +27,10 @@ namespace PRN221_ProjectDemo.DAO
             var workHours = dbContext.WorkHours.Where(w => w.EmployeeId == EmpId).ToList();
             return workHours;
         }
-
+        public WorkHour getWorkbySelectedDate(DateTime date)
+        {
+            return dbContext.WorkHours.FirstOrDefault(w => w.WorkDay == date);
+        }
         public void Add(WorkHour workHour)
         {
             try

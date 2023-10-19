@@ -46,7 +46,7 @@ namespace PRN221_ProjectDemo
             DepartmentComboBox.DisplayMemberPath = "DepartmentName";
             DepartmentComboBox.SelectedValuePath = "DepartmentName";
 
-            SalaryPerHourTextBox.ItemsSource = jobLevelDAO.GetAllJobLevel();
+            SalaryPerHourTextBox.ItemsSource = jobLevelDAO.GetAllJobLevels();
             SalaryPerHourTextBox.DisplayMemberPath = "SalaryPerHour";
             SalaryPerHourTextBox.SelectedValuePath = "SalaryPerHour";
 

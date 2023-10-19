@@ -27,12 +27,16 @@ namespace PRN221_ProjectDemo
 
         private void ManageEmployeesButton_Click(object sender, RoutedEventArgs e)
         {
-
+            EmployeesManager employeesManager = new EmployeesManager();
+            employeesManager.Show();
+            this.Close();
         }
 
         private void SalaryReportButton_Click(object sender, RoutedEventArgs e)
         {
-
+            frmDepartment department = new frmDepartment();
+            department.Show();
+            this.Close();
         }
 
         private void ManageSkillsAndAllowancesButton_Click(object sender, RoutedEventArgs e)
@@ -47,7 +51,9 @@ namespace PRN221_ProjectDemo
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            frmLogin frmLogi = new frmLogin();
+            frmLogi.Show();
+            this.Close();
         }
     }
 }
