@@ -39,7 +39,7 @@ namespace PRN221_ProjectDemo.DAO
 
             return query.ToList();
         }
-        public void CaculatorTotalhourByEmpId(List<StPayment> empId)
+        public bool CaculatorTotalhourByEmpId(List<StPayment> empId)
         {
             WorkHourDAO hourDAO = new WorkHourDAO();
             PaymentDAO paymentDAO = new PaymentDAO();
@@ -52,9 +52,16 @@ namespace PRN221_ProjectDemo.DAO
 
                 foreach (WorkHour work in workHours)
                 {
-                    if (work.WorkHour1.HasValue)
+                    if (work.WorkHour1.HasValue && work.Coefficient.HasValue)
                     {
-                        totalHours += (int)work.WorkHour1;
+                        if(work.Coefficient ==2)
+                        {
+                            totalHours += (int)(work.WorkHour1*1.5);
+                        }
+                        else
+                        {
+                            totalHours += (int)work.WorkHour1;
+                        }
                     }
                 }
 
@@ -64,17 +71,16 @@ namespace PRN221_ProjectDemo.DAO
                 paymentDAO.Update(newPayment);
 
             }
+            return true;
         }
 
 
-        public void CaculatorPayment(List<StPayment> empId)
+        public bool CaculatorPayment(List<StPayment> empId)
         {
-
             PaymentDAO paymentDAO = new PaymentDAO();
             EmpDAO empDAO = new EmpDAO();
             JobLevelDAO jobLevelDAO = new JobLevelDAO();
             AllowanceDAO allowanceDAO = new AllowanceDAO();
-
             foreach (StPayment stPayment in empId)
             {
                 decimal total = 0;
@@ -86,19 +92,39 @@ namespace PRN221_ProjectDemo.DAO
                     var level = jobLevelDAO.FindSalaryByJoblevel(emp.JobLevelId);
                     var allowance = allowanceDAO.GetAllowancesById(level.AllowanceId);
 
-
-
                     if (payment.TotalHours.HasValue && level.SalaryPerHour.HasValue && allowance.AllowanceAmount.HasValue)
                     {
-                        total = (decimal)payment.TotalHours * (decimal)level.SalaryPerHour + (decimal)allowance.AllowanceAmount;
+                        total = (decimal)payment.TotalHours * (decimal)level.SalaryPerHour;
+                        total += total * Caculate_Coeffient(stPayment.EMPID);
+                        total += (decimal)allowance.AllowanceAmount;
+                        var newPayment = paymentDAO.GetPaymentByEmpId(stPayment.EMPID);
+                        newPayment.TotalPayments= total;
+                        paymentDAO.Update(newPayment);
                     }
-
-                    var newPayment = paymentDAO.GetPaymentByEmpId(stPayment.EMPID);
-                    newPayment.TotalPayments = total;
-                    paymentDAO.Update(newPayment);
                 }
             }
+            return true;
         }
+        public decimal Caculate_Coeffient(string empId)
+        {
+            EmpDAO empDAO = new EmpDAO();
+            var emp = empDAO.GetEmpById(empId);
+            // Ngày cụ thể bạn muốn kiểm tra
+            DateTime specificDate = (DateTime)emp.BeginDate;
 
+            // Ngày hiện tại
+            DateTime currentDate = DateTime.Now;
+
+            // Tính toán khoảng thời gian giữa ngày hiện tại và ngày cụ thể
+            TimeSpan timeDifference = currentDate - specificDate;
+
+            // Tính số ngày
+            int daysDifference = (int)timeDifference.TotalDays;
+
+            // Tính số năm dựa trên tổng số ngày chia cho 365 (năm dương lịch)
+            int yearsDifference = daysDifference / 365; // Sử dụng phép chia nguyên
+
+            return (decimal)(yearsDifference * 0.5);
+        }
     }
 }

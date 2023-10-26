@@ -27,7 +27,6 @@
                     <GridViewColumn Header="Phone Number" DisplayMemberBinding="{Binding PhoneNumber}" Width="120" />
                     <GridViewColumn Header="Salary Per Hour" DisplayMemberBinding="{Binding SalaryPerHour}" Width="120" />
                     <GridViewColumn Header="Permission" DisplayMemberBinding="{Binding Permission}" Width="100" />
-                    <GridViewColumn Header="Payment Coefficient" DisplayMemberBinding="{Binding PaymentCoefficient}" Width="120" />
                     <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding BeginDate}" Width="120" />
                     <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate}" Width="120" />
                 </GridView>

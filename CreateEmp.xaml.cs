@@ -64,7 +64,6 @@ namespace PRN221_ProjectDemo
             PhoneNumberTextBox.Text = employeeInfo.PhoneNumber;
             SalaryPerHourTextBox.Text = employeeInfo.SalaryPerHour.ToString();
             PermissionTextBox.Text = employeeInfo.Permission.ToString();
-            PaymentCoefficientTextBox.Text = employeeInfo.PaymentCoefficient.ToString();
             BeginDateDatePicker.SelectedDate = employeeInfo.BeginDate;
             EndDateDatePicker.SelectedDate = employeeInfo.EndDate;
             Action.Content = "Edit";
@@ -169,7 +168,7 @@ namespace PRN221_ProjectDemo
                 {
                     EmployeeId = Var_SavedId,
                     SalaryPeriod = (DateTime)BeginDateDatePicker.SelectedDate,
-                    Coefficient = int.Parse(PaymentCoefficientTextBox.Text),
+                    Coefficient = 1,
                 };
 
                 User newUser = new User

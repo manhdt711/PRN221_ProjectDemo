@@ -75,9 +75,9 @@ namespace PRN221_ProjectDemo.DAO
                     existingPayment.SalaryPeriod = payment.SalaryPeriod;
                     existingPayment.TotalHours = payment.TotalHours;
                     existingPayment.Coefficient = payment.Coefficient;
-                    existingPayment.AmountTotal = (decimal)(payment.TotalHours * payment.Coefficient);
+                    existingPayment.AmountTotal = payment.AmountTotal;
                     existingPayment.OtherPayment = payment.OtherPayment;
-                    existingPayment.TotalPayments = existingPayment.AmountTotal + payment.OtherPayment;
+                    existingPayment.TotalPayments = payment.TotalPayments;
                     dbContext.Payments.Update(existingPayment);
                     // Lưu thay đổi vào cơ sở dữ liệu
                     dbContext.SaveChanges();

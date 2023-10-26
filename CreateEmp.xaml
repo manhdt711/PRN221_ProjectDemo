@@ -42,10 +42,6 @@
                 <TextBox x:Name="PermissionTextBox" Margin="5" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Payment Coefficient:" Width="100" VerticalContentAlignment="Center"/>
-                <TextBox x:Name="PaymentCoefficientTextBox" Margin="5" Width="200"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
                 <Label Content="Start Date:" Width="100" VerticalContentAlignment="Center"/>
                 <DatePicker x:Name="BeginDateDatePicker" Margin="5" Width="200"/>
             </StackPanel>

@@ -22,29 +22,18 @@ namespace PRN221_ProjectDemo
     {
         public frmCaculateSalary()
         {
-            InitializeComponent();
             StPaymentDAO stPaymentDAO = new StPaymentDAO();
             var stPaymentList = stPaymentDAO.GetEmployeePayments();
-
-            stPaymentDAO.CaculatorTotalhourByEmpId(stPaymentList);
-            stPaymentDAO.CaculatorPayment(stPaymentList);
-
-            lstSalary.ItemsSource = stPaymentList;
+            InitializeComponent();
+            lstSalary.ItemsSource = stPaymentList; 
         }
 
-        void Caculator()
-        {
-
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            StPaymentDAO stPaymentDAO = new StPaymentDAO();
-            var stPaymentList = stPaymentDAO.GetEmployeePayments();
-            stPaymentDAO.CaculatorTotalhourByEmpId(stPaymentList);
-            stPaymentDAO.CaculatorPayment(stPaymentList);
-
-            lstSalary.ItemsSource = stPaymentList;
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
         }
     }
 }

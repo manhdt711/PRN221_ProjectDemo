@@ -30,6 +30,22 @@ namespace PRN221_ProjectDemo
             workHourListView.ItemsSource = workHours;
         }
 
+        private List<DateTime> vietnamHolidays = new List<DateTime>
+        {
+            new DateTime(DateTime.Now.Year, 1, 1),   // Tết Nguyên Đán (Mùng 1 Tết)
+            new DateTime(DateTime.Now.Year, 4, 30),  // Ngày Giải Phóng Miền Nam (30/4)
+            new DateTime(DateTime.Now.Year, 5, 1),   // Ngày Quốc Tế Lao Động (1/5)
+            new DateTime(DateTime.Now.Year, 9, 2),   // Ngày Quốc Khánh (2/9)
+        };
+
+        private bool CheckVietnamHoliday(DateTime date)
+        {
+            foreach(DateTime time in vietnamHolidays)
+            {
+
+            }    
+            return vietnamHolidays.Contains(date.Date);
+        }
         private bool CheckWeekend(DateTime date)
         {
             bool isWeekend = false;

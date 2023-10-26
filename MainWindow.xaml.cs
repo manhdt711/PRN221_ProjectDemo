@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRN221_ProjectDemo.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,9 +47,15 @@ namespace PRN221_ProjectDemo
 
         private void CalculateSalaryButton_Click(object sender, RoutedEventArgs e)
         {
-            frmCaculateSalary frmCaculateSalary = new frmCaculateSalary();
-            frmCaculateSalary.Show();
-            this.Close();
+            StPaymentDAO stPaymentDAO = new StPaymentDAO();
+            StPaymentDAO stPayment = new StPaymentDAO();
+            var stPaymentList = stPaymentDAO.GetEmployeePayments();
+            if (stPaymentDAO.CaculatorTotalhourByEmpId(stPaymentList) && stPayment.CaculatorPayment(stPaymentList))
+            {
+                frmCaculateSalary frmCaculateSalary = new frmCaculateSalary();
+                frmCaculateSalary.Show();
+                this.Close();
+            }
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
