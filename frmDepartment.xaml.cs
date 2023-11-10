@@ -27,7 +27,7 @@ namespace PRN221_ProjectDemo
             string departmentID = textBoxDepartmentID.Text;
             string departmentName = textBoxDepartmentName.Text;
             string departmentDuty = textBoxDepartmentDuty.Text;
-            string status = textBoxStatus.Text;
+            string status = "active";
 
             Department newDepartment = new Department
             {
@@ -43,7 +43,6 @@ namespace PRN221_ProjectDemo
             textBoxDepartmentID.Clear();
             textBoxDepartmentName.Clear();
             textBoxDepartmentDuty.Clear();
-            textBoxStatus.Clear();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -55,7 +54,7 @@ namespace PRN221_ProjectDemo
                 selectedDepartment.DepartmentId = textBoxDepartmentID.Text;
                 selectedDepartment.DepartmentName = textBoxDepartmentName.Text;
                 selectedDepartment.DepartmentDuty = textBoxDepartmentDuty.Text;
-                selectedDepartment.Status = textBoxStatus.Text;
+                selectedDepartment.Status = "active";
                 DepartmentDAO department = new DepartmentDAO();
                 department.Update(selectedDepartment);
                 RefreshDepartmentList();
@@ -75,7 +74,6 @@ namespace PRN221_ProjectDemo
                 textBoxDepartmentID.Clear();
                 textBoxDepartmentName.Clear();
                 textBoxDepartmentDuty.Clear();
-                textBoxStatus.Clear();
             }
         }
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -87,9 +85,14 @@ namespace PRN221_ProjectDemo
                 textBoxDepartmentID.Text = selectedDepartment.DepartmentId;
                 textBoxDepartmentName.Text = selectedDepartment.DepartmentName;
                 textBoxDepartmentDuty.Text = selectedDepartment.DepartmentDuty;
-                textBoxStatus.Text = selectedDepartment.Status;
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
     }
 }

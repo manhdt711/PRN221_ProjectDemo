@@ -68,7 +68,8 @@ namespace PRN221_ProjectDemo
                 newJobLevel.SalaryPerHour = decimal.Parse(txtSalary.Text);
                 JobLevelDAO jobLevelDAO = new JobLevelDAO();
                 jobLevelDAO.UpdateJobLevel(newJobLevel);
-            }    
+            }
+            RefreshList();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -81,16 +82,32 @@ namespace PRN221_ProjectDemo
             };
             JobLevelDAO jobLevelDAO = new JobLevelDAO();
             jobLevelDAO.AddJobLevel(jobLevel);
+            RefreshList();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            JobLevel jobLevel = (JobLevel)lstViewLevel.SelectedItem;
+            if(jobLevel != null)
+            {
+                JobLevelDAO jobLevelDAO = new JobLevelDAO();
+                jobLevelDAO.DeleteJobLevel(jobLevel.JobLevelId);
+            }
+            RefreshList();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            EditAllowenece editAllowenece = new EditAllowenece();
+            editAllowenece.Show();
+            this.Close();
+        }
 
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
         }
     }
 }

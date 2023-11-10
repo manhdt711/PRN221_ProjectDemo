@@ -42,7 +42,9 @@ namespace PRN221_ProjectDemo
 
         private void ManageSkillsAndAllowancesButton_Click(object sender, RoutedEventArgs e)
         {
-
+            frmSkill skill = new frmSkill();
+            skill.Show();
+            this.Close();
         }
 
         private void CalculateSalaryButton_Click(object sender, RoutedEventArgs e)

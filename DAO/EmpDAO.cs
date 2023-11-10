@@ -44,7 +44,6 @@ FROM Employee AS e
 LEFT JOIN Department AS d ON e.DepartmentID = d.DepartmentID
 LEFT JOIN JobLevel AS j ON e.JobLevelID = j.JobLevelID
 LEFT JOIN [User] AS u ON e.EmployeeID = u.EmployeeID
-LEFT JOIN WorkHour AS wh ON e.EmployeeID = wh.EmployeeID
 LEFT JOIN Payments AS p ON e.EmployeeID = p.EmployeeID
                                 ";
 
@@ -52,6 +51,35 @@ LEFT JOIN Payments AS p ON e.EmployeeID = p.EmployeeID
 
             return employeeInfoList;
         }
+        public List<EmployeeInfo> GetEmployeeInfoList(string Dept)
+        {
+            var sql = $@"SELECT 
+    e.EmployeeID,
+    e.FirstName,
+    e.LastName,
+    d.DepartmentName,
+    d.DepartmentDuty,
+    e.DateOfBirth,
+    e.Title AS Job,
+    e.Gender,
+    e.PhoneNumber,
+    j.SalaryPerHour,
+    u.Permission,
+    p.Coefficient AS PaymentCoefficient,
+	e.BeginDate,
+	e.EndDate
+FROM Employee AS e
+LEFT JOIN Department AS d ON e.DepartmentID = d.DepartmentID
+LEFT JOIN JobLevel AS j ON e.JobLevelID = j.JobLevelID
+LEFT JOIN [User] AS u ON e.EmployeeID = u.EmployeeID
+LEFT JOIN Payments AS p ON e.EmployeeID = p.EmployeeID
+                                ";
+            sql += "where d.DepartmentName = '" + Dept + "'";
+            var employeeInfoList = dbContext.EmployeeInfos.FromSqlRaw(sql).ToList();
+
+            return employeeInfoList;
+        }
+
         public void AddEmp(Employee emp)
         {
             try
@@ -105,6 +133,7 @@ LEFT JOIN Payments AS p ON e.EmployeeID = p.EmployeeID
 
                 
         }
+      
         public Employee GetEmpById(string EmpId)
         {
             return dbContext.Employees.FirstOrDefault(e => e.EmployeeId == EmpId);

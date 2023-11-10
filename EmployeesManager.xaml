@@ -11,8 +11,8 @@
             <Label Content="Department: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
             <ComboBox x:Name="coDepartment" HorizontalAlignment="Left" Margin="88,10,0,0" VerticalAlignment="Top" Width="120" 
           DisplayMemberPath="DepartmentName" SelectedValuePath="DepartmentName" ItemsSource="{Binding}"/>
-            <Label Content="SortBy: " HorizontalAlignment="Left" Margin="239,10,0,0" VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="294,10,0,0" VerticalAlignment="Top" Width="120"/>
+            <Button Content="Search" HorizontalAlignment="Left" Margin="240,12,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+            <Button Content="Reset" HorizontalAlignment="Left" Margin="300,13,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
         </Grid>
         <ListView Name="lstEmp" Margin="0,52,0,56" PreviewMouseDoubleClick="lstEmp_MouseDoubleClick">
             <ListView.View>

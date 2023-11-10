@@ -32,19 +32,22 @@ namespace PRN221_ProjectDemo
 
         private List<DateTime> vietnamHolidays = new List<DateTime>
         {
-            new DateTime(DateTime.Now.Year, 1, 1),   // Tết Nguyên Đán (Mùng 1 Tết)
-            new DateTime(DateTime.Now.Year, 4, 30),  // Ngày Giải Phóng Miền Nam (30/4)
-            new DateTime(DateTime.Now.Year, 5, 1),   // Ngày Quốc Tế Lao Động (1/5)
-            new DateTime(DateTime.Now.Year, 9, 2),   // Ngày Quốc Khánh (2/9)
+            new DateTime(DateTime.Now.Year, 1, 1), 
+            new DateTime(DateTime.Now.Year, 4, 30),
+            new DateTime(DateTime.Now.Year, 5, 1),  
+            new DateTime(DateTime.Now.Year, 9, 2),   
         };
 
         private bool CheckVietnamHoliday(DateTime date)
         {
-            foreach(DateTime time in vietnamHolidays)
+            foreach (DateTime holiday in vietnamHolidays)
             {
-
-            }    
-            return vietnamHolidays.Contains(date.Date);
+                if (date.Month == holiday.Month && date.Day == holiday.Day)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         private bool CheckWeekend(DateTime date)
         {
@@ -66,6 +69,10 @@ namespace PRN221_ProjectDemo
             {
                 coefficientByDate = 2;
             }
+            if(CheckVietnamHoliday(workDay))
+            {
+                coefficientByDate = 3;
+            }    
             WorkHour newWorkHour = new WorkHour
             {
                 EmployeeId = employeeID,

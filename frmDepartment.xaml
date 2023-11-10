@@ -31,5 +31,6 @@
         <Button Content="Add" Click="AddButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="420,180,0,0" />
         <Button Content="Update" Click="UpdateButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="500,180,0,0" />
         <Button Content="Delete" Click="DeleteButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="580,180,0,0" />
+        <Button Content="Back" HorizontalAlignment="Left" Margin="725,379,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.252,0.253" Click="Button_Click"/>
     </Grid>
 </Window>

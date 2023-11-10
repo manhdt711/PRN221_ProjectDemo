@@ -78,5 +78,19 @@ namespace PRN221_ProjectDemo
             mainWindow.Show();
             this.Close();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            empDAO = new EmpDAO();
+            if(coDepartment.SelectedValue != null)
+            {
+                lstEmp.ItemsSource = empDAO.GetEmployeeInfoList((string)coDepartment.SelectedValue);
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            lstEmp.ItemsSource = empDAO.GetEmployeeInfoList();
+        }
     }
 }

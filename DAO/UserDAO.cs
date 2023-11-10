@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace PRN221_ProjectDemo.DAO
 {
@@ -64,6 +65,30 @@ namespace PRN221_ProjectDemo.DAO
                     Debug.WriteLine($"Inner Exception: {ex.InnerException.Message}");
                 }
             }
+        }
+        public bool ChagePass(string empId, string password, string newPass)
+        {
+            bool isChanged = false;
+            try
+            {
+                var existing = dbContext.Users.FirstOrDefault(u => u.EmployeeId.Equals(empId) && u.Password.Equals(password));
+                if (existing != null)
+                {
+                    existing.Password = newPass;
+                    dbContext.SaveChanges();
+                    isChanged = true;
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                Debug.WriteLine($"DbUpdateException: {ex.Message}");
+                // Để xem thông tin lỗi cụ thể hơn, bạn có thể truy cập Inner Exception.
+                if (ex.InnerException != null)
+                {
+                    Debug.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
+            }
+            return isChanged;
         }
     }
 }

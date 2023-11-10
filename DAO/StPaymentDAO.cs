@@ -57,6 +57,9 @@ namespace PRN221_ProjectDemo.DAO
                         if(work.Coefficient ==2)
                         {
                             totalHours += (int)(work.WorkHour1*1.5);
+                        }else if(work.Coefficient == 3)
+                        {
+                            totalHours += (int)(work.WorkHour1 * 2);
                         }
                         else
                         {
@@ -73,7 +76,6 @@ namespace PRN221_ProjectDemo.DAO
             }
             return true;
         }
-
 
         public bool CaculatorPayment(List<StPayment> empId)
         {
